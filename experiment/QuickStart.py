@@ -119,8 +119,16 @@ if __name__ == '__main__':
 
     # Datas are in a subfolder of the samples. Need to find where the script is
     # because it could have been called from anywhere
+    stake_code="sh.600000";
     modpath = os.path.dirname(os.path.abspath(sys.argv[0]))
-    datapath = os.path.join(modpath, '..\stock\sh.600000\history_A_stock_k_data.csv')
+    #path in linux
+    relative_path_in_linux="../stock/%s/history_A_stock_k_data.csv" %(stake_code);
+    #path in windows
+    relative_path_in_windows=relative_path_in_linux.replace("/","\\");
+
+    datapath = os.path.join(modpath, relative_path_in_linux)
+    #datapath = os.path.join(modpath, relative_path_in_windows)
+
 
     # Create a Data Feed
     data = bt.feeds.GenericCSVData(
